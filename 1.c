@@ -70,26 +70,30 @@ void modifierPersonne(personne tab[], int nombre ){
    }
 }
 
-//FONCTION 4  :   SUPPRIMER
+// Fonction 4 : SUPPRIMER
+void supprimerPersonne(personne tab[], int *nombre) {
+    int in, i;
 
-void supprimerPersonne(personne tab[], int nombre){
+    if (*nombre == 0) {
+        printf("Il n'y a aucune personne à supprimer.\n");
+    }
+ else{
+    printf("Entrez l'indice de la personne à supprimer : ");
+    scanf("%d", &in);
 
-    int in,i;
-    printf ("donne l'indice de personne que voulez supprimer %d:",in);
-    scanf ("%d",&in);
+    if (in < 1 || in > *nombre) {
+        printf("Indice non valide.\n");
+        return;
+    }
 
-   if (in<0 || in>nombre){
-        printf ("nombre pas trouver");}
-   else{
-
-        for(i=0;i<=nombre;i++){
-
-        tab[in]= tab[in+1];}
-
-
-} printf ("le personne est supprime");
+    in--;  // Pour accéder à l'index correct dans le tableau
+    for (i = in; i < *nombre - 1; i++) {
+        tab[i] = tab[i + 1];
+    }
 }
-
+    (*nombre)--;  // Diminue le nombre d'éléments
+    printf("La personne a été supprimée.\n");
+}
 
 int main(void){
 
@@ -121,7 +125,7 @@ do {
       modifierPersonne(tab,nombre);
       break;
    case 4:
-      supprimerPersonne(tab,nombre);
+     supprimerPersonne(tab,nombre);
       break;
    default :
     printf("Choix invalide. Veuillez réessayer.\n");
